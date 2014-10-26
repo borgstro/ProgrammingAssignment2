@@ -31,6 +31,6 @@ cacheSolve <- function(x, ...) {
         }
         mtrx <- x$get()
         minv <- Solve(mtrx)
-        mtrx$setinverse(minv)  ##sets the computed value in the cache and save the value to calling env.
+        x$setinverse(minv)  ##sets the computed value in the cache and save the value to calling env.
         minv
 }
