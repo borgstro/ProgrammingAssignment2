@@ -12,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
         	}
         	getmatrix <- function() x
 	##setinverse will take inverse and superassign it to minv
-        	setinverse <- function(inverse) minv <<- inverse  ##computes, caches matrix inverse
+        	setinverse <- function(solve) minv <<- solve  ##computes, caches matrix inverse
         	getinverse <- function() minv			  ##returns matrix inverse
         	##a list of the functions
         	list(setmatrix = setmatrix, getmatrix = getmatrix,
@@ -30,7 +30,7 @@ cacheSolve <- function(x, ...) {
                 return(minv)
         }
         mtrx <- x$get()
-        minv <- Solve(mtrx)
+        minv <- solve(mtrx)
         x$setinverse(minv)  ##sets the computed value in the cache and save the value to calling env.
         minv
 }
