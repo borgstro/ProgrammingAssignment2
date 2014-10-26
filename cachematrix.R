@@ -5,17 +5,18 @@
 ## Set the value to the matrix
 ## checks the inputted matrix with cacheSolve, inverse will be returned
 makeCacheMatrix <- function(x = matrix()) {
-				minv<-NULL
-        		setmatrix <- function(y){
-                x <<- y
-                minv <<- NULL
-        		}
-        		getmatrix <- function() x
-        		setinverse <- function(inverse) minv <<- inverse
-        		getinverse <- function() minv
-        		list(setmatrix = setmatrix, getmatrix = getmatrix,
-            	setinverse = setinverse,
-            	getinverse = getinverse)
+		minv<-NULL
+        	setmatrix <- function(y){
+                	x <<- y
+                	minv <<- NULL
+        	}
+        	getmatrix <- function() x
+	##setinverse will take inverse and superassign it to minv
+        	setinverse <- function(inverse) minv <<- inverse  ##computes, caches matrix inverse
+        	getinverse <- function() minv			  ##returns matrix inverse
+        	##a list of the functions
+        	list(setmatrix = setmatrix, getmatrix = getmatrix,
+            	setinverse = setinverse, getinverse = getinverse)
 }
 
 
@@ -30,6 +31,6 @@ cacheSolve <- function(x, ...) {
         }
         mtrx <- x$get()
         minv <- Solve(mtrx)
-        mtrx$setinverse(minv)
+        mtrx$setinverse(minv)  ##sets the computed value in the cache and save the value to calling env.
         minv
 }
